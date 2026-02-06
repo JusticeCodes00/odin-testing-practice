@@ -5,6 +5,7 @@
   "scripts": {
     "prepare": "husky && husky install",
     "test": "jest",
+    "test:watch": "jest --watch *.js",
     "clean": "rm dist -r",
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
