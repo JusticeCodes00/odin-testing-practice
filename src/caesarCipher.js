@@ -7,10 +7,10 @@ export function caesarCipher(...args) {
   const [str, shift] = args;
 
   if (typeof str !== "string")
-    throw new Error("Error: expecting a first argument to type string");
+    throw new Error("Error: expecting a first argument of type string");
 
   if (typeof shift !== "number")
-    throw new Error("Error: expecting a second argument to type number");
+    throw new Error("Error: expecting a second argument of type number");
 
   return encrypt(str, shift);
 }
@@ -18,7 +18,6 @@ export function caesarCipher(...args) {
 function encrypt(str, shift) {
   const cipherTextAlpha =
     plainTextAlpha.slice(shift) + plainTextAlpha.slice(0, shift);
-  //  C console.log({ plainTextAlpha, cipherTextAlpha });
 
   const encryptionTable = Object.fromEntries(
     plainTextAlpha.split("").map((key, i) => [key, cipherTextAlpha[i]]),
@@ -26,10 +25,15 @@ function encrypt(str, shift) {
 
   const cipherText = str
     .split("")
-    .map((char) => encryptionTable[char])
+    .map((char) => {
+      if (encryptionTable[char.toLowerCase()] && char === char.toUpperCase()) {
+        return encryptionTable[char.toLowerCase()].toUpperCase();
+      }
+
+      if (!encryptionTable[char]) return char;
+      return encryptionTable[char.toLowerCase()];
+    })
     .join("");
 
   return cipherText;
 }
-
-// C console.log(caesarCipher("hello", 0));
