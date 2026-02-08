@@ -7,7 +7,7 @@ import json from "@eslint/json";
 import markdown from "@eslint/markdown";
 
 export default defineConfig([
-  globalIgnores(["node_modules/", "package-lock.json"]),
+  globalIgnores(["node_modules/", "package-lock.json", "coverage"]),
   {
     files: ["**/*.{js,mjs,cjs}"],
     plugins: { js },
