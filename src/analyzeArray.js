@@ -1,4 +1,4 @@
-export function analyzeArray(arr) {
+export function analyzeArray(arr = []) {
   if (!Array.isArray(arr))
     throw new Error("Error: expecting argument of type array");
 
